@@ -1,1 +1,2 @@
 # Rock-Paper-Scissor
+Welcome to my simple Rock, Paper, Scissors game! This project is a fun implementation of the classic game using JavaScript prompts. Simply run the script in your browser's console and follow the prompts to play against the computer. It's a great way to pass the time and test your luck. Enjoy!
