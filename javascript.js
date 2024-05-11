@@ -10,5 +10,14 @@ function getComputerChoice(){
     }
     return compChoice;
 }
-
-console.log(getComputerChoice());
+function getHumanChoice(){
+    let userInput = window.prompt("Please enter your choice\n \n 'rock'  or  'paper'  or  'scissor'\n");
+    if(userInput.toLowerCase() === "rock"){
+        return userInput;
+    }else if(userInput.toLowerCase() === "paper"){
+        return userInput;
+    }else if(userInput.toLowerCase() === "scissor"){
+        return userInput;
+    }else return "Invalid Choice";
+}
+console.log(getHumanChoice());
