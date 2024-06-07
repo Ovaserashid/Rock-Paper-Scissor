@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.playarea{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+}
+.gamearea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.chealth{
+    flex: 1;
+    display: flex;
+}
+.chealth div{
+    flex: 1;
+    height: 10px;
+    border: 1px solid rgb(92, 26, 26);
+}
+.compchoice{
+    width: 150px;
+    height: 150px;
+    border: 2px solid gray;
+}
+.resultarea{
+    width: 200px;
+    height: 200px;
+    border: 2px solid gray;
+}
+.humchoice{
+    width: 150px;
+    height: 150px;
+    border: 2px solid gray;
+}
+.hhealth{
+    display: flex;
+}
+
+.buttonarea{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+button{
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 16px;
+}
+.footer{
+    display: flex;
+}
