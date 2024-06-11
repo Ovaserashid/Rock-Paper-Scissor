@@ -1,3 +1,10 @@
+let compHealth = 11;
+let humHealth = 11;
+const resultMsg = document.querySelector('.resultarea');
+const compHealthBar = document.querySelectorAll('.chealth div');
+const humHealthBar = document.querySelectorAll('.hhealth div');
+const compImgBox = document.querySelector('.compchoice');
+const humImgBox = document.querySelector('.humchoice');
 function getComputerChoice(){
     let randomNum = Math.floor(Math.random()*3);
     let compChoice = "";
@@ -10,6 +17,49 @@ function getComputerChoice(){
     }
     return compChoice;
 }
+
+function displayResult(result){
+    if(result === 'tie'){
+        resultMsg.style.color = "blue";
+        resultMsg.textContent = 'Tie!!!';
+    }else if(result === 'human'){
+        resultMsg.style.color = "green";
+        resultMsg.textContent = 'You Win!!'
+    }else if(result === 'computer'){
+        resultMsg.style.color = "red";
+        resultMsg.textContent = 'You lose!!'
+    }
+}
+
+function reduceHealth(humanHealth, computerHealth){
+    compHealthBar.forEach((cbar)=>{
+        for(let i = 12;i> computerHealth;i--){
+            if(cbar.className === 'c'+i){
+                cbar.style.backgroundColor = "red";
+            }            
+        }
+    });
+    humHealthBar.forEach((hbar)=>{
+        for(let i = 11;i> humanHealth;i--){
+            if(hbar.className === 'h'+i){
+                hbar.style.backgroundColor = "red";
+            }  
+        }
+    });
+}
+
+function displayImages(humanImage, computerImage){
+    let  imageHuman = document.createElement('img');
+    let  imageComputer = document.createElement('img');
+    
+    imageHuman.src="images/"+humanImage+".png";
+    humImgBox.appendChild(imageHuman);
+    humImgBox.removeChild(imageHuman);
+    
+    imageComputer.src="images/"+computerImage+".png";
+    compImgBox.appendChild(imageComputer);
+    compImgBox.removeChild(imageComputer);
+}
 let button = document.querySelectorAll('button');
     button.forEach((btn)=>{
         btn.addEventListener('click', (e)=>{
@@ -18,16 +68,19 @@ let button = document.querySelectorAll('button');
             case 'rock':
                 {
                     playRound('rock',getComputerChoice());
+                    reduceHealth(humHealth, compHealth);
                     break;
                 }
             case 'paper':
                 {
                     playRound('paper',getComputerChoice());
+                    reduceHealth(humHealth, compHealth);
                     break;
                 }
             case 'scissor':
                 {
                     playRound('scissor',getComputerChoice());
+                    reduceHealth(humHealth, compHealth);
                     break;
                 }
             case 'reset':
@@ -38,29 +91,29 @@ let button = document.querySelectorAll('button');
         });
     });
 function playRound(humanChoice, computerChoice){
+    displayImages(humanChoice, computerChoice);
     if(humanChoice === computerChoice){
         humHealth -= 1;
         compHealth -= 1;
-
+        displayResult('tie');
     }else if(humanChoice === "rock" && computerChoice === "paper"){
         humHealth -= 2;
+        displayResult('computer');
     }else if(humanChoice === "rock" && computerChoice === "scissor"){
         compHealth -=2; 
+        displayResult('human');
     }else if(humanChoice === "paper" && computerChoice === "rock"){
-        humanScore++;
-        alert("You win! Paper beats Rock\nComputer Score: "+computerScore+"                Human Score: "+humanScore);
+        compHealth -= 2;
+        displayResult('human');
     }else if(humanChoice === "paper" && computerChoice === "scissor"){
-        computerScore++;
-        alert("You Lose! Scissor beats Paper\nComputer Score: "+computerScore+"                Human Score: "+humanScore);
+        humHealth -= 2;
+        displayResult('computer');
     }else if(humanChoice === "scissor" && computerChoice === "paper"){
-        humanScore++;
-        alert("You win! Scissor beats Paper\nComputer Score: "+computerScore+"                Human Score: "+humanScore);
+        compHealth -= 2;
+        displayResult('human');
     }else if(humanChoice === "scissor" && computerChoice === "rock"){
-        computerScore++;
-        alert("You Lose! Rock beats Scissor\nComputer Score: "+computerScore+"                Human Score: "+humanScore);
+        humHealth -=2;
+        displayResult('computer');
     }else alert("Unknown Error");
 }
-let compHealth = 11;
-let humHealth = 11;
-let computerScore = 0;
-let humanScore =0;
+
