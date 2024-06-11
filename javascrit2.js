@@ -10,25 +10,24 @@ function getComputerChoice(){
     }
     return compChoice;
 }
-function getHumanChoice(){
-    let button = document.querySelectorAll('button');
+let button = document.querySelectorAll('button');
     button.forEach((btn)=>{
         btn.addEventListener('click', (e)=>{
             let choice = e.target;
         switch(choice.className){
             case 'rock':
                 {
-                    return 'rock';
+                    playRound('rock',getComputerChoice());
                     break;
                 }
             case 'paper':
                 {
-                    return 'paper';
+                    playRound('paper',getComputerChoice());
                     break;
                 }
             case 'scissor':
                 {
-                    return 'scissor';
+                    playRound('scissor',getComputerChoice());
                     break;
                 }
             case 'reset':
@@ -38,16 +37,15 @@ function getHumanChoice(){
         }
         });
     });
-}
 function playRound(humanChoice, computerChoice){
     if(humanChoice === computerChoice){
-        alert("Same response by both players!! No winner\nComputer Score: "+computerScore+"                Human Score: "+humanScore);
+        humHealth -= 1;
+        compHealth -= 1;
+
     }else if(humanChoice === "rock" && computerChoice === "paper"){
-        computerScore ++;
-        alert("You lose! Paper beats Rock\nComputer Score: "+computerScore+"                Human Score: "+humanScore);
+        humHealth -= 2;
     }else if(humanChoice === "rock" && computerChoice === "scissor"){
-        humanScore++;
-        alert("You win! Rock beats Scissor\nComputer Score: "+computerScore+"                Human Score: "+humanScore);
+        compHealth -=2; 
     }else if(humanChoice === "paper" && computerChoice === "rock"){
         humanScore++;
         alert("You win! Paper beats Rock\nComputer Score: "+computerScore+"                Human Score: "+humanScore);
@@ -64,7 +62,5 @@ function playRound(humanChoice, computerChoice){
 }
 let compHealth = 11;
 let humHealth = 11;
-while(compHealth >= 0 && humHealth >= 0){
-    
-}
-
+let computerScore = 0;
+let humanScore =0;
