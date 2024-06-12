@@ -5,6 +5,8 @@ const compHealthBar = document.querySelectorAll('.chealth div');
 const humHealthBar = document.querySelectorAll('.hhealth div');
 const compImgBox = document.querySelector('.compchoice');
 const humImgBox = document.querySelector('.humchoice');
+let  imageHuman = document.createElement('img');
+let  imageComputer = document.createElement('img');
 function getComputerChoice(){
     let randomNum = Math.floor(Math.random()*3);
     let compChoice = "";
@@ -28,6 +30,12 @@ function displayResult(result){
     }else if(result === 'computer'){
         resultMsg.style.color = "red";
         resultMsg.textContent = 'You lose!!'
+    }else if(result === 'gamehuman'){
+        resultMsg.style.color = "green";
+        resultMsg.textContent = "Congratulations!!!\n You defeated computer";
+    }else if(result === 'gamecomputer'){
+        resultMsg.style.color = "red";
+        resultMsg.textContent = "Game Over!!!\n You were defeated by computer";
     }
 }
 
@@ -49,45 +57,53 @@ function reduceHealth(humanHealth, computerHealth){
 }
 
 function displayImages(humanImage, computerImage){
-    let  imageHuman = document.createElement('img');
-    let  imageComputer = document.createElement('img');
+    
     
     imageHuman.src="images/"+humanImage+".png";
     humImgBox.appendChild(imageHuman);
-    humImgBox.removeChild(imageHuman);
+    
     
     imageComputer.src="images/"+computerImage+".png";
     compImgBox.appendChild(imageComputer);
-    compImgBox.removeChild(imageComputer);
+    
 }
+// function removeImages(){
+//     humImgBox.removeChild(imageHuman);
+//     compImgBox.removeChild(imageComputer);
+// }
 let button = document.querySelectorAll('button');
     button.forEach((btn)=>{
         btn.addEventListener('click', (e)=>{
             let choice = e.target;
-        switch(choice.className){
-            case 'rock':
-                {
-                    playRound('rock',getComputerChoice());
-                    reduceHealth(humHealth, compHealth);
-                    break;
+            if(choice.className === 'reset'){
+                location.reload();
+            }
+            if(humHealth > 0 && compHealth >0){
+                switch(choice.className){
+                    case 'rock':
+                    {
+                        playRound('rock',getComputerChoice());
+                        reduceHealth(humHealth, compHealth);
+                        break;
+                    }
+                    case 'paper':
+                    {
+                        playRound('paper',getComputerChoice());
+                        reduceHealth(humHealth, compHealth);
+                        break;
+                    }
+                    case 'scissor':
+                    {
+                            playRound('scissor',getComputerChoice());
+                            reduceHealth(humHealth, compHealth);
+                            break;
+                    }
+                    case 'reset':
+                    {
+                            location.reload();
+                    }
                 }
-            case 'paper':
-                {
-                    playRound('paper',getComputerChoice());
-                    reduceHealth(humHealth, compHealth);
-                    break;
-                }
-            case 'scissor':
-                {
-                    playRound('scissor',getComputerChoice());
-                    reduceHealth(humHealth, compHealth);
-                    break;
-                }
-            case 'reset':
-                {
-                    location.reload();
-                }
-        }
+            }        
         });
     });
 function playRound(humanChoice, computerChoice){
@@ -95,25 +111,67 @@ function playRound(humanChoice, computerChoice){
     if(humanChoice === computerChoice){
         humHealth -= 1;
         compHealth -= 1;
-        displayResult('tie');
+        if(humHealth <= 0){
+            displayResult('gamecomputer');
+        }else if(compHealth <= 0){
+            displayResult('gamehuman');
+        }else{
+            displayResult('tie');
+        }   
     }else if(humanChoice === "rock" && computerChoice === "paper"){
         humHealth -= 2;
-        displayResult('computer');
+        if(humHealth <= 0){
+            displayResult('gamecomputer');
+        }else if(compHealth <= 0){
+            displayResult('gamehuman');
+        }else{
+            displayResult('computer');
+        }
     }else if(humanChoice === "rock" && computerChoice === "scissor"){
         compHealth -=2; 
-        displayResult('human');
+        if(humHealth <= 0){
+            displayResult('gamecomputer');
+        }else if(compHealth <= 0){
+            displayResult('gamehuman');
+        }else{
+            displayResult('human');
+        }
     }else if(humanChoice === "paper" && computerChoice === "rock"){
         compHealth -= 2;
-        displayResult('human');
+        if(humHealth <= 0){
+            displayResult('gamecomputer');
+        }else if(compHealth <= 0){
+            displayResult('gamehuman');
+        }else{
+            displayResult('human');
+        }
     }else if(humanChoice === "paper" && computerChoice === "scissor"){
         humHealth -= 2;
-        displayResult('computer');
+        if(humHealth <= 0){
+            displayResult('gamecomputer');
+        }else if(compHealth <= 0){
+            displayResult('gamehuman');
+        }else{
+            displayResult('computer');
+        }
     }else if(humanChoice === "scissor" && computerChoice === "paper"){
         compHealth -= 2;
-        displayResult('human');
+        if(humHealth <= 0){
+            displayResult('gamecomputer');
+        }else if(compHealth <= 0){
+            displayResult('gamehuman');
+        }else{
+            displayResult('human');
+        }
     }else if(humanChoice === "scissor" && computerChoice === "rock"){
         humHealth -=2;
-        displayResult('computer');
+        if(humHealth <= 0){
+            displayResult('gamecomputer');
+        }else if(compHealth <= 0){
+            displayResult('gamehuman');
+        }else{
+            displayResult('computer');
+        }
     }else alert("Unknown Error");
 }
 

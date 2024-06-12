@@ -34,22 +34,55 @@
     border: 1px solid rgb(129, 128, 128);
     background-color: green;
 }
+.compnamebox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-left: 10px;
+}
+.compname{
+    font-size: 14px;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px black;
+}
 .compchoice{
     width: 150px;
     height: 150px;
+    border: 2px solid black;
+    border-radius: 5%;
 }
 img{
     width: 100%;
     height: 100%;
 }
 .resultarea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 200px;
-    height: 200px;
-    border: 2px solid gray;
+    height: 180px;
+    font-weight: bolder;
+    font-size: 32px;
+    text-align: center;
+    text-shadow: 1px 3px 6px rgb(114, 114, 114);
 }
 .humchoice{
     width: 150px;
     height: 150px;
+    border: 2px solid black;
+    border-radius: 5%;
+}
+.humnamebox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-left: 10px;
+}
+.humname{
+    font-size: 14px;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px black;
 }
 .hhealth{
     display: flex;
@@ -84,7 +117,7 @@ img{
     margin: 10px 0px;
 }
 button{
-    border-radius: 70%;
+    border-radius: 100%;
     padding: 20px;
     font-size: 16px;
     font-weight: bolder;
