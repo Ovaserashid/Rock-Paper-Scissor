@@ -36,6 +36,9 @@ function displayResult(result){
     }else if(result === 'gamecomputer'){
         resultMsg.style.color = "red";
         resultMsg.textContent = "Game Over!!!\n You were defeated by computer";
+    }else if(result === 'tiegame'){
+        resultMsg.style.color = "blue";
+        resultMsg.textContent = 'The game ended in a draw!';
     }
 }
 
@@ -107,63 +110,77 @@ function playRound(humanChoice, computerChoice){
     if(humanChoice === computerChoice){
         humHealth -= 1;
         compHealth -= 1;
-        if(humHealth <= 0){
+        if(humHealth === 0 && compHealth ===0){
+            displayResult('tiegame');
+        }else if(humHealth <= 0 && compHealth >0){
             displayResult('gamecomputer');
-        }else if(compHealth <= 0){
+        }else if(compHealth <= 0 && humHealth >0){
             displayResult('gamehuman');
         }else{
             displayResult('tie');
         }   
     }else if(humanChoice === "rock" && computerChoice === "paper"){
         humHealth -= 2;
-        if(humHealth <= 0){
+        if(humHealth === 0 && compHealth ===0){
+            displayResult('tiegame');
+        }else if(humHealth <= 0 && compHealth >0){
             displayResult('gamecomputer');
-        }else if(compHealth <= 0){
+        }else if(compHealth <= 0 && humHealth >0){
             displayResult('gamehuman');
         }else{
             displayResult('computer');
         }
     }else if(humanChoice === "rock" && computerChoice === "scissor"){
         compHealth -=2; 
-        if(humHealth <= 0){
+        if(humHealth === 0 && compHealth ===0){
+            displayResult('tiegame');
+        }else if(humHealth <= 0 && compHealth >0){
             displayResult('gamecomputer');
-        }else if(compHealth <= 0){
+        }else if(compHealth <= 0 && humHealth >0){
             displayResult('gamehuman');
         }else{
             displayResult('human');
         }
     }else if(humanChoice === "paper" && computerChoice === "rock"){
         compHealth -= 2;
-        if(humHealth <= 0){
+        if(humHealth === 0 && compHealth ===0){
+            displayResult('tiegame');
+        }else if(humHealth <= 0 && compHealth >0){
             displayResult('gamecomputer');
-        }else if(compHealth <= 0){
+        }else if(compHealth <= 0 && humHealth >0){
             displayResult('gamehuman');
         }else{
             displayResult('human');
         }
     }else if(humanChoice === "paper" && computerChoice === "scissor"){
         humHealth -= 2;
-        if(humHealth <= 0){
+        if(humHealth === 0 && compHealth ===0){
+            displayResult('tiegame');
+        }else if(humHealth <= 0 && compHealth >0){
             displayResult('gamecomputer');
-        }else if(compHealth <= 0){
+        }else if(compHealth <= 0 && humHealth >0){
             displayResult('gamehuman');
         }else{
             displayResult('computer');
         }
     }else if(humanChoice === "scissor" && computerChoice === "paper"){
         compHealth -= 2;
-        if(humHealth <= 0){
+        if(humHealth === 0 && compHealth ===0){
+            displayResult('tiegame');
+        }else if(humHealth <= 0 && compHealth >0){
             displayResult('gamecomputer');
-        }else if(compHealth <= 0){
+        }else if(compHealth <= 0 && humHealth >0){
             displayResult('gamehuman');
         }else{
             displayResult('human');
         }
     }else if(humanChoice === "scissor" && computerChoice === "rock"){
         humHealth -=2;
-        if(humHealth <= 0){
+        if(humHealth === 0 && compHealth ===0){
+            displayResult('tiegame');
+        }else if(humHealth <= 0 && compHealth >0){
             displayResult('gamecomputer');
-        }else if(compHealth <= 0){
+        }else if(compHealth <= 0 && humHealth >0){
             displayResult('gamehuman');
         }else{
             displayResult('computer');
